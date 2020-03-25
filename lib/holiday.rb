@@ -37,7 +37,6 @@ def add_new_holiday_with_supplies(holiday_hash, season, holiday_name, supply_arr
 end
 
 def all_winter_holiday_supplies(holiday_hash)
-  # return an array of all of the supplies that are used in the winter season
   collection = holiday_hash.collect do |season, holidays|
     if season == :winter
       holidays.collect do |holiday, supplies|
@@ -56,7 +55,14 @@ def all_supplies_in_holidays(holiday_hash)
   # Summer:
   #   Fourth Of July: Fireworks, BBQ
   # etc.
-
+  holiday_hash.each do |season, holidays|
+    puts season.to_s.capitalize!
+    holidays.each do |holiday, supplies|
+      holiday_to_print = holiday.to_s.split("_").collect {|word| word.capitalize!}
+      supplies_to_print = supplies.join(", ")
+      puts "  #{holiday_to_print.join(" ")}: #{supplies_to_print}"
+    end
+  end
 end
 
 def all_holidays_with_bbq(holiday_hash)
